@@ -1,6 +1,6 @@
 import React from "react";
 import type { CSSProperties } from "react";
-import { ChallengeComponent } from "./ChallengeComponent";
+import { ColumnWrapper } from "./ColumnWrapper";
 import "./App.css";
 
 const $mainStyle: CSSProperties = {
@@ -24,13 +24,17 @@ const $titleWrapperStyle: CSSProperties = {
 function App() {
   return (
     <div className="App">
+      <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+      />
       <header className="App-header">
         <div style={$titleWrapperStyle}>
           <h1>YATA</h1>
         </div>
       </header>
       <main style={$mainStyle}>
-        <ChallengeComponent />
+        <ColumnWrapper />
       </main>
     </div>
   );
