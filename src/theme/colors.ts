@@ -7,6 +7,7 @@ export enum ColorKeys {
   success = "success",
   warning = "warning",
   error = "error",
+  outline = "outline",
 }
 
 export const colors: Record<ColorKeys, HexCode> = {
@@ -17,4 +18,5 @@ export const colors: Record<ColorKeys, HexCode> = {
   success: "#3C896D", // Viridian
   warning: "FFBE0B", // Amber
   error: "#AA5042", // Redwood - love the names it comes up with
+  outline: "#bbb",
 };

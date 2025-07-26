@@ -1,56 +1,83 @@
 import type { ReactNode, CSSProperties } from "react";
-import { colors } from "../theme";
+import { colors, spacing } from "../theme";
+import "./Button.css";
 
-enum ButtonVariant {
-  Contained,
-  Text,
-  Outlined,
-}
+type ButtonVariant = "contained" | "outlined" | "text";
 
 export type ButtonProps = {
   onClick: () => void;
-  children: ReactNode;
-  icon?: string;
   variant: ButtonVariant;
   style?: CSSProperties;
-};
+  disabled?: boolean;
+} & (
+  | {
+      children: ReactNode;
+      icon?: string;
+    }
+  | {
+      children?: never;
+      icon: string;
+    }
+);
 
-const getStyleFromVariant = (variant: ButtonVariant) => {
+const getStyleFromVariant = (variant: ButtonVariant, disabled: boolean) => {
+  const baseStyle: CSSProperties = {
+    borderRadius: spacing.sm,
+    padding: spacing.sm,
+    outline: "none",
+    inset: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: `1px solid ${colors.outline}`,
+  };
   switch (variant) {
-    case ButtonVariant.Contained:
+    case "contained":
       return {
-        backgroundColor: colors.primary,
-        color: "white",
+        backgroundColor: disabled ? `${colors.primary}33` : colors.primary,
+        color: disabled ? colors.textPrimary : "white",
+        ...baseStyle,
       };
-    case ButtonVariant.Outlined:
+    case "outlined":
       return {
         backgroundColor: "white",
         borderColor: colors.primary,
         color: colors.textPrimary,
+        ...baseStyle,
       };
-    case ButtonVariant.Text:
+    case "text":
       return {
         backgroundColor: "white",
         borderColor: "white",
         color: colors.textPrimary,
+        ...baseStyle,
       };
   }
 };
 
 export const Button = function Button({
   onClick,
-  children,
+  children = null,
   icon,
   variant,
   style = {},
+  disabled = false,
 }: ButtonProps) {
   const $style: CSSProperties = {
     ...style,
-    ...getStyleFromVariant(variant),
+    ...getStyleFromVariant(variant, disabled),
+  };
+
+  const noop = () => {
+    // Whee
   };
 
   return (
-    <button style={$style} onClick={onClick}>
+    <button
+      className={`button button--${variant}`}
+      style={$style}
+      onClick={disabled ? noop : onClick}
+    >
       {icon && <span className="material-icons">{icon}</span>}
       {children}
     </button>

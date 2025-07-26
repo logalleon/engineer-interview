@@ -1,7 +1,9 @@
 import React from "react";
 import type { CSSProperties, FC } from "react";
-import { DroppableColumn, Row } from "./components";
+import { TodosColumn, Row } from "./components";
 import { spacing } from "./theme";
+import { TodoStatus } from "./types";
+import { AddTodoForm } from "./AddTodoForm";
 
 const $wrapperStyle: CSSProperties = {
   padding: spacing.lg,
@@ -10,10 +12,13 @@ const $wrapperStyle: CSSProperties = {
 
 export const ColumnWrapper: FC = function ColumnWrapper() {
   return (
-    <Row style={$wrapperStyle}>
-      <DroppableColumn title="Todo" />
-      <DroppableColumn title="In Progress" />
-      <DroppableColumn title="Done" />
-    </Row>
+    <>
+      <Row style={$wrapperStyle}>
+        <TodosColumn status={TodoStatus.NotStarted} title="Todo" />
+        <TodosColumn status={TodoStatus.InProgress} title="In Progress" />
+        <TodosColumn status={TodoStatus.Done} title="Done" />
+      </Row>
+      <AddTodoForm />
+    </>
   );
 };

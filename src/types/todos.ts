@@ -3,9 +3,7 @@ export enum TodoStatus {
   InProgress,
   Done,
 }
-export type Todos = {
-  id: string;
+export type Todo = {
   title: string;
-  content: string;
   status: TodoStatus;
 };
