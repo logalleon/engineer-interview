@@ -49,11 +49,13 @@ export const AddTodoForm = function AddTodoForm() {
     <Column style={$wrapperStyle}>
       <Row>
         <TextInput
+          data-testid="add-todo-input"
           value={value}
           onChange={onChange}
           placeholder="Enter todo title"
         />
         <Button
+          data-testid="add-todo-button"
           style={$buttonStyle}
           onClick={onAddTodo}
           variant="contained"
@@ -62,7 +64,11 @@ export const AddTodoForm = function AddTodoForm() {
           Add Todo
         </Button>
       </Row>
-      {error ? <p style={$errorStyle}>{error}</p> : null}
+      {error ? (
+        <p data-testid="add-form-error" style={$errorStyle}>
+          {error}
+        </p>
+      ) : null}
     </Column>
   );
 };

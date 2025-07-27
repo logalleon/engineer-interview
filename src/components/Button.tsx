@@ -62,6 +62,7 @@ export const Button = function Button({
   variant,
   style = {},
   disabled = false,
+  ...rest
 }: ButtonProps) {
   const $style: CSSProperties = {
     ...style,
@@ -77,6 +78,7 @@ export const Button = function Button({
       className={`button button--${variant}`}
       style={$style}
       onClick={disabled ? noop : onClick}
+      {...rest}
     >
       {icon && <span className="material-icons">{icon}</span>}
       {children}

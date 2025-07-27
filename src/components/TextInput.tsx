@@ -11,6 +11,7 @@ export const TextInput: FC<TextInputProps> = function TextInput({
   onChange,
   placeholder = "",
   value,
+  ...rest
 }) {
   const $style: CSSProperties = {
     borderRadius: spacing.sm,
@@ -22,6 +23,7 @@ export const TextInput: FC<TextInputProps> = function TextInput({
 
   return (
     <input
+      {...rest}
       style={$style}
       onChange={onChange}
       value={value}
