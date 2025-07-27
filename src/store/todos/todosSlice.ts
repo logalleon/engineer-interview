@@ -27,16 +27,12 @@ export const todosSlice = createSlice({
       state,
       action: { payload: { index: number; from: TodoStatus; to: TodoStatus } }
     ) => {
-      const nextFrom = [...state.todos[action.payload.from]];
-      const [todo] = nextFrom.splice(action.payload.index);
-      const nextTo = [
-        ...state.todos[action.payload.to],
-        { ...todo, status: action.payload.to },
-      ];
-      console.log(nextFrom, nextTo);
-      console.log({ nextFrom, nextTo, todo });
-      state.todos[action.payload.from] = nextFrom;
-      state.todos[action.payload.to] = nextTo;
+      const { from, to, index } = action.payload;
+      const [nextTodo] = state.todos[from].splice(index, 1);
+      state.todos[to].push({
+        ...nextTodo,
+        status: to,
+      });
     },
   },
 });

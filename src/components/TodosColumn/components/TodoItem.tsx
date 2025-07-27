@@ -31,7 +31,9 @@ export const TodoItem: FC<TodoItemProps> = function TodoItem({
 }) {
   const dispatch = useDispatch();
   const handleMove = (direction: "left" | "right") => () => {
-    const to = TodoOrder[direction === "left" ? status - 1 : status + 1];
+    // This could brittle...it's relying on enums being converted to numbers,
+    const to: TodoStatus =
+      TodoOrder[direction === "left" ? status - 1 : status + 1];
     dispatch(
       moveTodo({
         index,
