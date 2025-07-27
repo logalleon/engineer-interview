@@ -33,7 +33,7 @@ function App() {
         />
         <header className="App-header">
           <div style={$titleWrapperStyle}>
-            <h1>YATA</h1>
+            <h1>YATA - Yet Another Todo App</h1>
           </div>
         </header>
         <main style={$mainStyle}>
